@@ -1,0 +1,47 @@
+# ==============================================================================
+# .gitignore - Agenda de Eventos (Monorepo: Frontend + Backend)
+# ==============================================================================
+
+# Dependencias (Evita subir gigabytes de librerías)
+node_modules/
+*/node_modules/
+**/node_modules/
+
+# Archivos de compilación y salida (Vite / TypeScript)
+dist/
+dist-ssr/
+build/
+out/
+.vite/
+*/.vite/
+
+# Archivos de registro y depuración
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.log
+
+# Archivos de entorno específicos del desarrollador
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Cobertura de pruebas
+coverage/
+
+# Archivos de configuración de IDEs y editores
+.idea/
+.vscode/*
+!.vscode/extensions.json
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Archivos temporales de sistemas operativos (Windows / macOS / Linux)
+.DS_Store
+Thumbs.db
+desktop.ini
