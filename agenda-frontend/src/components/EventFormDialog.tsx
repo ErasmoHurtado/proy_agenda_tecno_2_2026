@@ -99,6 +99,7 @@ export const EventFormDialog: React.FC<EventFormDialogProps> = ({
       PaperProps={{
         component: 'form',
         onSubmit: handleSubmit,
+        noValidate: true,
         sx: { borderRadius: 2 },
       }}
     >
