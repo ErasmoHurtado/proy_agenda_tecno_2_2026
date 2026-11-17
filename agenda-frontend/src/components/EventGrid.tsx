@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Grid, Box, Typography, Paper } from '@mui/material';
 import EventBusyIcon from '@mui/icons-material/EventBusy';
 import { EventItem } from '../types/event.types';
@@ -6,11 +6,14 @@ import { EventCard } from './EventCard';
 
 /**
  * ============================================================================
- * COMPONENTE: EventGrid
+ * COMPONENTE: EventGrid (Memoizado con React.memo)
  * ============================================================================
- * Renderiza la cuadrícula responsiva de eventos.
- * Itera sobre la lista pre-calculada (`filteredEvents`) y pasa los callbacks
- * memorizados a cada <EventCard />.
+ * Al estar envuelto en React.memo, este componente compara si la referencia
+ * de 'events' (provista por useMemo en App.tsx) y los callbacks (de useCallback)
+ * han cambiado.
+ *
+ * Si el usuario abre/cierra el modal de nuevo evento o interactúa con otra
+ * parte de la aplicación, este Grid y sus tarjetas NO se re-renderizan.
  */
 interface EventGridProps {
   events: EventItem[];
@@ -18,7 +21,7 @@ interface EventGridProps {
   onDelete: (id: string | number) => void;
 }
 
-export const EventGrid: React.FC<EventGridProps> = ({
+const EventGridComponent: React.FC<EventGridProps> = ({
   events,
   onEdit,
   onDelete,
@@ -64,3 +67,5 @@ export const EventGrid: React.FC<EventGridProps> = ({
     </Box>
   );
 };
+
+export const EventGrid = memo(EventGridComponent);
