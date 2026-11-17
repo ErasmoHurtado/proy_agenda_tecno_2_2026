@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { AppBar, Toolbar, Typography, IconButton, Tooltip, Box } from '@mui/material';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
@@ -7,15 +7,13 @@ import { useAppTheme } from '../context/ThemeContext';
 
 /**
  * ============================================================================
- * COMPONENTE: Header
+ * COMPONENTE: Header (Memoizado con React.memo)
  * ============================================================================
- * DEMOSTRACIÓN DE PILAR 1 (Context API):
- * Este componente es el consumidor directo del `ThemeContext`.
- * Al pulsar el botón de alternar tema, dispara `toggleTheme()`.
- * Como el cambio de tema es de BAJA FRECUENCIA, la actualización del Context
- * es idónea y no degrada la interacción del usuario.
+ * Al estar envuelto en React.memo, cuando el usuario escribe en el buscador
+ * o interactúa con el CRUD, este Header NO se re-renderiza innecesariamente.
+ * Solo se re-renderizará cuando toggleTheme() cambie el ThemeContext.
  */
-export const Header: React.FC = () => {
+const HeaderComponent: React.FC = () => {
   const { mode, toggleTheme } = useAppTheme();
 
   return (
@@ -44,3 +42,5 @@ export const Header: React.FC = () => {
     </AppBar>
   );
 };
+
+export const Header = memo(HeaderComponent);
